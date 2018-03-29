@@ -20,6 +20,7 @@ var bcryptNodejs = require('bcrypt-nodejs');
 var twinBcrypt = require('twin-bcrypt');
 var bcryptjs = require('bcryptjs');
 var bcrypt = require('bcrypt');
+var wasm = require('bcrypt.wasm');
 var async = require('async');
 
 var maxDuration = Number(process.argv[2]) || 100;
@@ -114,9 +115,31 @@ function testBcrypt(cb){
   cb();
 }
 
+/////////////////////////////////////////////////////////////////////
+// bcrypt.wasm
+function testBcryptWasm(cb){
+
+  rounds = 3;
+
+  console.log('\nbcrypt.wasm (wasm)');
+  console.log('rounds', ' ms');
+
+  do {
+    rounds++;
+    salt = wasm.genSaltSync(rounds);
+    start = new Date();
+    hash = wasm.hashSync('somepass', salt);
+    duration = new Date() - start.getTime();
+    console.log(('   ' + rounds).slice(-3), ('     ' + duration).slice(-6));
+  } while (duration < maxDuration);
+
+  cb();
+}
+
 tests.push(idle, testBcryptNodejs);
 tests.push(idle, testTwinBcrypt);
 tests.push(idle, testBcryptjs);
+tests.push(idle, testBcryptWasm);
 if (!process.browser) { tests.push(idle, testBcrypt); }
 
 async.series(tests);

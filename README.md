@@ -5,7 +5,7 @@ that can be spent on login.
 
 Using a fixed amount of time (and thus having an assured user experience) this
 module runs a couple of different bcrypt implementations so that the optimum
-number of rounds can be found given some hardware and the time that a login 
+number of rounds can be found given some hardware and the time that a login
 may take (i.e. Apple uses [80ms for unlocking](http://www.darthnull.org/2014/10/06/ios-encryption)).
 
 Note: this package should be run on the target production hardware to get a good
@@ -16,6 +16,7 @@ The following packages are currently tested:
 * [twin-bcrypt](https://www.npmjs.org/package/twin-bcrypt) (pure js, no deps, asm.js)
 * [bcryptjs](https://www.npmjs.org/package/bcryptjs) (pure js, no deps)
 * [bcrypt](https://www.npmjs.org/package/bcrypt) (c++, has deps)
+* [bcrypt.wasm](https://www.npmjs.org/package/bcrypt.wasm) (wasm)
 
 Any suggestions on other bcrypt implementations are welcome.
 
@@ -37,42 +38,56 @@ Example run on a 3 GHz core:
 
     bcrypt-nodejs (pure js, no deps)
     rounds  ms
-      4      8
-      5      9
-      6     15
-      7     31
-      8     53
-      9    108
+      4     14
+      5      8
+      6     12
+      7     24
+      8     48
+      9     91
+     10    181
 
     twin-bcrypt (pure js, no deps, asm.js)
     rounds  ms
-      4      8
-      5      7
+      4     22
+      5     16
       6     12
-      7     26
-      8     48
-      9     92
-     10    184
+      7     23
+      8     49
+      9     97
+     10    194
 
     bcryptjs (pure js, no deps)
     rounds  ms
-      4      9
-      5      8
-      6     16
-      7     32
-      8     57
-      9    114
+      4     29
+      5      3
+      6      7
+      7     12
+      8     27
+      9     48
+     10     99
+     11    200
+
+    bcrypt.wasm (wasm)
+    rounds  ms
+      4      3
+      5      3
+      6      6
+      7     11
+      8     22
+      9     46
+     10     94
+     11    177
 
     bcrypt (c++, has deps)
     rounds  ms
-      4      1
+      4      2
       5      3
-      6      5
-      7      9
-      8     18
-      9     38
-     10     76
-     11    150
+      6      6
+      7     10
+      8     20
+      9     41
+     10     81
+     11    164
 
 ## Further reading
 

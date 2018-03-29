@@ -6,7 +6,9 @@
     "email": "tim@netsend.nl",
     "url": "https://github.com/timkuijsten"
   },
-  "contributors": ["kumavis"],
+  "contributors": [
+    "kumavis"
+  ],
   "license": "ISC",
   "description": "Determine how many rounds can be used for a given maximum amount of login time",
   "keywords": [
@@ -20,6 +22,7 @@
     "async": "^0.9.0",
     "bcrypt": ">=0.8.0",
     "bcrypt-nodejs": ">=0.0.3",
+    "bcrypt.wasm": "^0.1.0",
     "bcryptjs": ">=2.0.2",
     "twin-bcrypt": ">=2.0.2"
   },
